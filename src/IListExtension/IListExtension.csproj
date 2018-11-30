@@ -5,6 +5,10 @@
         <LangVersion>7.3</LangVersion>
         <Authors>Emilien</Authors>
         <Description>Add some List function to IList interface</Description>
+        <PackageProjectUrl>https://github.com/Emilien-M/IListExtension</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Emilien-M/IListExtension</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseUrl>https://github.com/Emilien-M/IListExtension/blob/master/LICENSE</PackageLicenseUrl>
     </PropertyGroup>
 
 </Project>
