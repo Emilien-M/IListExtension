@@ -9,7 +9,7 @@ variables:
   MajorVersion: 0
   MinorVersion: 1
 
-name: $(BuildDefinitionName)_$(Date:yyMMdd)$(Rev:rr)
+name: $(Date:yyMMdd)$(Rev:rr)
 steps:
 - task: NuGetToolInstaller@0
   displayName: 'Use NuGet 4.8.1'
