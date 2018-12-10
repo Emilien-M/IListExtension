@@ -8,6 +8,24 @@ Add missing function to IList interface.
 # Implemented Functions
 
 - AddRange
-- ForEach
+- Exists
+- Find
+- FindAll
 - FindIndex
+- FindLast
+- FindLastIndex
+- ForEach
+- ForEach async
 - RemoveAll
+
+# To implement
+
+- AsReadOnly
+- BinarySearch
+- ConvertAll
+- GetRange
+- InsertRange
+- RemoveRange
+- Sort
+- TrimExcess
+- TrueForAll
