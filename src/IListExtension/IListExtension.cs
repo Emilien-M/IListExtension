@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,6 +26,81 @@ namespace IListExtension
             {
                 source.Add(element);
             }
+        }
+     
+        public static IReadOnlyCollection<T> AsReadOnly<T>(this IList<T> source)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (source is List<T> concreteList)
+            {
+                return concreteList.AsReadOnly();
+            }
+
+            return new ReadOnlyCollection<T>(source);
+        }
+        
+        public static int BinarySearch<T>(this IList<T> source, int index, int count, T item, IComparer<T> comparer)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (index < 0)
+            {
+                throw new ArgumentNullException(nameof(index));
+            }
+            
+            if (count < 0)
+            {
+                throw new ArgumentNullException(nameof(count));
+            }
+
+            if (source.Count - index < count)
+            {
+                throw new ArgumentNullException("invalid length");
+            }
+                
+            if (source is List<T> concreteList)
+            {
+                return concreteList.BinarySearch(index, count, item, comparer);
+            }
+
+            return Array.BinarySearch(source.ToArray(), index, count, item, comparer);
+        }
+        
+        public static int BinarySearch<T>(this IList<T> source, T item)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+                
+            if (source is List<T> concreteList)
+            {
+                return concreteList.BinarySearch(item);
+            }
+
+            return source.BinarySearch(0, source.Count, item, null);
+        }
+        
+        public static int BinarySearch<T>(this IList<T> source, T item, IComparer<T> comparer)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+                
+            if (source is List<T> concreteList)
+            {
+                return concreteList.BinarySearch(item);
+            }
+
+            return source.BinarySearch(0, source.Count, item, comparer);
         }
         
         public static bool Exists<T>(this IList<T> source, Predicate<T> predicate)
@@ -226,6 +303,40 @@ namespace IListExtension
                 await func.Invoke(element);
             }
         }
+        
+        public static IList<T> GetRange<T>(this IList<T> source, int index, int count)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (index < 0)
+            {
+                throw new ArgumentNullException(nameof(index));
+            }
+            
+            if (count < 0)
+            {
+                throw new ArgumentNullException(nameof(count));
+            }
+            
+            if (source.Count - index < count)
+            {
+                throw new ArgumentNullException("invalid length");
+            }
+
+            if (source is List<T> concreteList)
+            {
+                return concreteList.GetRange(index, count);
+            }
+            
+            IList<T> results = new List<T>(count);
+            
+            Array.Copy(source.ToArray(), index, results.ToArray(), 0, count);
+
+            return results;
+        }
 
         public static int RemoveAll<T>(this IList<T> source, Predicate<T> predicate)
         {
@@ -254,15 +365,39 @@ namespace IListExtension
 
             return result;
         }
+        
+        public static bool TrueForAll<T>(this IList<T> source, Predicate<T> predicate)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
 
-        //AsReadOnly
-        //BinarySearch
+            if (predicate == null)
+            {
+                throw new ArgumentNullException(nameof(predicate));
+            }
+
+            if (source is List<T> concreteList)
+            {
+                return concreteList.TrueForAll(predicate);
+            }
+           
+            foreach (T element in source)
+            {
+                if (!predicate(element))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         //ConvertAll
-        //GetRange
         //InsertRange
         //RemoveRange
         //Sort
         //TrimExcess
-        //TrueForAll
     }
 }
