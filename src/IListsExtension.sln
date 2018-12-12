@@ -1,6 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IListExtension", "IListExtension\IListExtension.csproj", "{3BCFD051-48FC-4F5B-901B-E0795C707B24}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IListExtension", "IListExtension\IListExtension.csproj", "{3BCFD051-48FC-4F5B-901B-E0795C707B24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IListExtension.Tests", "IListExtension.Tests\IListExtension.Tests.csproj", "{07E14121-E257-4B99-8D81-651179422ACF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +17,15 @@ Global
 		{3BCFD051-48FC-4F5B-901B-E0795C707B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BCFD051-48FC-4F5B-901B-E0795C707B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BCFD051-48FC-4F5B-901B-E0795C707B24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07E14121-E257-4B99-8D81-651179422ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07E14121-E257-4B99-8D81-651179422ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07E14121-E257-4B99-8D81-651179422ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07E14121-E257-4B99-8D81-651179422ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C422FB29-41D5-4CE1-8785-F0F305BE2643}
 	EndGlobalSection
 EndGlobal
