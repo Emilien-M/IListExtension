@@ -11,11 +11,16 @@ namespace IListExtension
     {
         public static void AddRange<T>(this IList<T> source, IEnumerable<T> newList)
         {
-            if (source == null || newList == null)
+            if (source == null)
             {
-                return;
+                throw new ArgumentNullException(nameof(source));
             }
 
+            if (newList == null)
+            {
+                throw new ArgumentNullException(nameof(newList));
+            }
+            
             if (source is List<T> concreteList)
             {
                 concreteList.AddRange(newList);
