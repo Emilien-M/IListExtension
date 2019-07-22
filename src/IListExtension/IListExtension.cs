@@ -102,6 +102,28 @@ namespace IListExtension
 
             return source.BinarySearch(0, source.Count, item, comparer);
         }
+
+        public static IList<TOutput> ConvertAll<TOutput, T>(this IList<T> source, Converter<T, TOutput> converter)
+        {
+            if( converter == null) 
+            {
+                throw new ArgumentNullException(nameof(converter));
+            }
+            
+            if (source is List<T> concreteList)
+            {
+                return concreteList.ConvertAll(converter);
+            }
+            
+            IList<TOutput> list = new List<TOutput>(source.Count);
+
+            for (int i = 0; i < source.Count; i++)
+            {
+                list[i] = converter(source[i]);
+            }
+
+            return list;
+        }
         
         public static bool Exists<T>(this IList<T> source, Predicate<T> predicate)
         {

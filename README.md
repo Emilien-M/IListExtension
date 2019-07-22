@@ -11,6 +11,7 @@ Add missing function to IList interface.
 - AddRange
 - AsReadOnly
 - BinarySearch
+- ConvertAll
 - Exists
 - Find
 - FindAll
@@ -25,7 +26,6 @@ Add missing function to IList interface.
 
 # To implement
 
-- ConvertAll
 - InsertRange
 - RemoveRange
 - Sort
