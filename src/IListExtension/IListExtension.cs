@@ -108,9 +108,14 @@ namespace IListExtension
             return source.BinarySearch(0, source.Count, item, comparer);
         }
 
-        public static IList<TOutput> ConvertAll<TOutput, T>(this IList<T> source, Converter<T, TOutput> converter)
+        public static IList<TOutput> ConvertAll<T, TOutput>(IList<T> source, Converter<T, TOutput> converter)
         {
-            if( converter == null) 
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            
+            if (converter == null)
             {
                 throw new ArgumentNullException(nameof(converter));
             }
@@ -392,6 +397,95 @@ namespace IListExtension
 
             return result;
         }
+
+        public static void Sort<T>(this IList<T> source)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            
+            if (source is List<T> concreteList)
+            {
+                concreteList.Sort();
+                return;
+            }
+            
+            source.Sort(0, source.Count, null);
+        }
+
+        public static void Sort<T>(this IList<T> source, IComparer<T> comparer)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            
+            if (source is List<T> concreteList)
+            {
+                concreteList.Sort(comparer);
+                return;
+            }
+            
+            source.Sort(0, source.Count, comparer);
+        }
+        
+        public static void Sort<T>(this IList<T> source, int index, int count, IComparer<T> comparer)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (index < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index), index, "Can't be less than 0");
+            }
+            
+            if (count < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(count), count, "Can't be less than 0");
+            }
+
+            if (source.Count - index < count)
+            {
+                throw new ArgumentOutOfRangeException("Invalid range on the list");
+            }
+            
+            if (source is List<T> concreteList)
+            {
+                concreteList.Sort(index, count, comparer);
+                return;
+            }
+
+            T[] array = source.ToArray();
+            
+            Array.Sort(array, index, count, comparer);
+
+            source = array.ToList();
+        }
+
+        public static void Sort<T>(this IList<T> source, Comparison<T> comparison)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            
+            if (comparison == null)
+            {
+                throw new ArgumentNullException(nameof(comparison));
+            }
+
+            if (source is List<T> concreteList)
+            {
+                concreteList.Sort(comparison);
+                return;
+            }
+            
+            IComparer<T> comparer = new FunctorComparer<T>(comparison);
+            source.Sort(0, source.Count, comparer);
+        }
         
         public static bool TrueForAll<T>(this IList<T> source, Predicate<T> predicate)
         {
@@ -421,10 +515,7 @@ namespace IListExtension
             return true;
         }
 
-        //ConvertAll
         //InsertRange
         //RemoveRange
-        //Sort
-        //TrimExcess
     }
 }

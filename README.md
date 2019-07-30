@@ -22,11 +22,10 @@ Add missing function to IList interface.
 - ForEach async
 - GetRange
 - RemoveAll
+- Sort
 - TrueForAll
 
 # To implement
 
 - InsertRange
 - RemoveRange
-- Sort
-- TrimExcess
