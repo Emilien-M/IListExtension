@@ -1,3 +1,12 @@
+# 0.5.19073015
+
+- Sort
+- Fix ConvertAll
+
+# 0.4.19072201
+
+- ConvertAll
+
 # 0.3.18121102
 
 - AsReadOnly
