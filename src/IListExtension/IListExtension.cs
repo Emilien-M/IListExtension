@@ -369,6 +369,35 @@ namespace IListExtension
 
             return results;
         }
+        
+        public static void InsertRange<T>(this IList<T> source, int index, IEnumerable<T> collection)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (index < 0 || index >= source.Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index), index, "Invalid index");
+            }
+            
+            if (collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection));
+            }
+
+            if (source is List<T> concreteList)
+            {
+                concreteList.InsertRange(index, collection);
+                return;
+            }
+
+            for (int i = index; i <= collection.Count() + 1; i++)
+            {
+                source.Insert(i, collection.ElementAt(i - index));
+            }
+        }
 
         public static int RemoveAll<T>(this IList<T> source, Predicate<T> predicate)
         {
@@ -396,6 +425,45 @@ namespace IListExtension
             }
 
             return result;
+        }
+        
+        public static void RemoveRange<T>(this IList<T> source, int index, int count)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            if (index < 0 || index >= source.Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(count), count, "Invalid index");
+            }
+            
+            if (count < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(count), count, "Can't be less than 0");
+            }
+
+            if (source.Count - index < count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(count), count, "Count is to big for the IList and the index");
+            }
+            
+            if (count == 0)
+            {
+                return;
+            }
+            
+            if (source is List<T> concreteList)
+            {
+                concreteList.RemoveRange(index, count);
+                return;
+            }
+
+            for (int i = count; i > 0; i--)
+            {
+                source.RemoveAt(index);
+            }
         }
 
         public static void Sort<T>(this IList<T> source)
@@ -514,8 +582,5 @@ namespace IListExtension
 
             return true;
         }
-
-        //InsertRange
-        //RemoveRange
     }
 }

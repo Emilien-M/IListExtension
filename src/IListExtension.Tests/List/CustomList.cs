@@ -330,7 +330,6 @@ namespace IListExtension.Tests.List
                 index = 0;
                 current = default;
             }
- 
         }
     }
 }
