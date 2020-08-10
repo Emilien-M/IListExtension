@@ -1,3 +1,7 @@
+# 1.0.0
+- InsertRange
+- RemoveRange
+
 # 0.5.19073015
 
 - Sort

@@ -5,7 +5,9 @@
 [![GitHub](https://img.shields.io/badge/source-GitHub-lightgrey.svg)](https://github.com/Emilien-M/IListExtension)
 
 # IListExtension
-Add missing function to IList interface.
+Add List functions to IList interface.
+
+Some implementations are slower than List if you don't have a concrete list but they do the job.
 
 # Implemented Functions
 
@@ -22,11 +24,8 @@ Add missing function to IList interface.
 - ForEach
 - ForEach async
 - GetRange
+- InsertRange
 - RemoveAll
+- RemoveRange
 - Sort
 - TrueForAll
-
-# To implement
-
-- InsertRange
-- RemoveRange
