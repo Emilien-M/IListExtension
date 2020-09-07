@@ -230,7 +230,7 @@ namespace IListExtension
 
             if (source is List<T> concreteList)
             {
-                return concreteList.RemoveAll(predicate);
+                return concreteList.FindIndex(predicate);
             }
 
             for (int i = 0; i < source.Count; i++)
