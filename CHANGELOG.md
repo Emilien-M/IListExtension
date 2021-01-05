@@ -1,3 +1,11 @@
+# 1.0.2
+
+- Fix BinarySearch with comparer
+
+# 1.0.1
+
+- Fix FindIndex
+
 # 1.0.0
 - InsertRange
 - RemoveRange
