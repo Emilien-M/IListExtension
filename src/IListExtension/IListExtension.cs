@@ -102,7 +102,7 @@ namespace IListExtension
                 
             if (source is List<T> concreteList)
             {
-                return concreteList.BinarySearch(item);
+                return concreteList.BinarySearch(item, comparer);
             }
 
             return source.BinarySearch(0, source.Count, item, comparer);

@@ -5,8 +5,8 @@
         <Authors>Emilien</Authors>
         <Description>Add some List function to IList interface</Description>
         <AssemblyVersion>1</AssemblyVersion>
-        <FileVersion>1.0.1</FileVersion>
-        <Version>1.0.1</Version>
+        <FileVersion>1.0.2</FileVersion>
+        <Version>1.0.2</Version>
         <PackageProjectUrl>https://github.com/Emilien-M/IListExtension</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Emilien-M/IListExtension</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
