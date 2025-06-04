@@ -49,9 +49,9 @@ jobs:
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
       - name: Build .NET projects
-        run: dotnet build --configuration Release
+        run: dotnet build src/IListsExtension.sln --configuration Release
       - name: Run .NET tests
-        run: dotnet test --configuration Release --no-build
+        run: dotnet test src/IListsExtension.sln --configuration Release --no-build
       - name: Analyze with SonarCloud
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
